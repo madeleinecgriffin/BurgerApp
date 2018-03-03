@@ -22,24 +22,19 @@ module.exports = function (app) {
   // ---------------------------------------------------------------------------
 
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
+    res.render("index", {burgers: burger_name});
   });
 
-  // If no matching route is found default to home
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/home.html"));
-  });
-
-  app.get("/api/friends", function (req, res) {
-    res.json(friendData);
+  app.get("/api/burgers", function (req, res) {
+    res.json(burgers);
   });
 
   // API POST Requests
   // ---------------------------------------------------------------------------
 
-  app.post("/api/friends", function (req, res) {
+  app.post("/api/burgers", function (req, res) {
 
-    var userData = req.body;
+    var newBurger = req.body;
 
     //initialize a variable for storing the difference score for the list of possible friends
     var diffArray = [];
