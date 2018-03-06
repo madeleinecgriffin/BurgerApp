@@ -1,30 +1,10 @@
-// ===============================================================================
-// LOAD DATA
-// We are linking our routes to a series of "data" sources.
-// ===============================================================================
-
-var burgerData = require("../models/burger.js");
 var express = require("express");
-var router = express.Router();
-
-// ===============================================================================
-// DEPENDENCIES
-// We need to include the path package to get the correct file path for our html
-// ===============================================================================
-
+var burgers = require("../models/burger.js");
 var path = require("path");
 
-// ===============================================================================
-// ROUTING
-// ===============================================================================
-
-module.exports = function (app) {
-  // API GET Requests
-  // ---------------------------------------------------------------------------
+var router = express.Router();
 
   router.get("/", function(req, res) {
-    console.log("Display")
-    //res.render("index", {burgers: burger_name});
     burgers.all(function(data) {
       var burgersObj = {
         burgers: data
@@ -36,15 +16,15 @@ module.exports = function (app) {
 
   /*router.get("/api/burgers", function (req, res) {
     res.json(burgers);
-  });
-
-  // API POST Requests
-  // ---------------------------------------------------------------------------
+  });*/
 
   router.post("/api/burgers", function (req, res) {
+    burgers.insert("burger_name", req.body.name, function(result) {
+    res.json({ id: result.insertId });
+    });
+    console.log(res.json({ id: result.insertId }));
+  });
 
-    var newBurger = req.body;
-    
-    res.json(burgers);
-  });*/
-}
+
+// Export routes for server.js to use.
+module.exports = router;

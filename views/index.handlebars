@@ -5,26 +5,38 @@
 <!-- Pass in data from server.js -->
 <ul>
 
-  {{#each burgers}}
+  {{#each burgers}} {{#unless devoured}}
+  <li>
+    <p>
+      <span class="label">Burger Name:</span> {{burger_name}}
+    </p>
 
-  	<li>
-  	    <p><span class="label">Burger Name:</span> {{burger_name}}</p>
+    <button data-id="{{id}}" class="delquote">Devour</button>
 
-        <button data-id="{{id}}" class="delquote">Devour</button>
+  </li>
+  {{/unless}} {{/each}}
 
-  	</li>
+</ul>
 
-  {{/each}}
+<h2>Devoured</h2>
 
+<ul>
+  {{#each burgers}} {{#if devoured}}
+  <li>
+    <p>
+      <span class="label">Burger Name:</span> {{burger_name}}
+    </p>
+  </li>
+  {{/if}} {{/each}}
 </ul>
 
 <h2>Add a Burger</h2>
 
-<form class="create-form">
+<form class="create-form" action="/api/burgers" method="post">
 
   <div class="form-group">
     <label for="auth">Burger:</label>
-    <input type="text" id="auth" name="author">
+    <input type="text" id="auth" name="name">
   </div>
 
   <button type="submit">Add Burger</button>

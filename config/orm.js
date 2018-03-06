@@ -11,7 +11,7 @@ var orm = {
         });
       },
       insert: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table + " (" + cols + ") VALUES (" + vals + ")";
+        var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES ?";
 
         console.log(queryString);
     
@@ -28,11 +28,12 @@ var orm = {
         var queryString = "UPDATE " + table + " SET devoured = true WHERE burger_name = " + cols;
     
         console.log(queryString);
+
         connection.query(queryString, function(err, result) {
           if (err) {
             throw err;
           }
-    
+
           cb(result);
         });
       }
