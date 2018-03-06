@@ -11,15 +11,8 @@ var orm = {
         });
       },
       insert: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
-    
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-    
+        var queryString = "INSERT INTO " + table + " (" + cols + ") VALUES (" + vals + ")";
+
         console.log(queryString);
     
         connection.query(queryString, vals, function(err, result) {
@@ -31,13 +24,8 @@ var orm = {
         });
       },
       // An example of objColVals would be {name: panther, sleepy: true}
-      update: function(table, objColVals, condition, cb) {
-        var queryString = "UPDATE " + table;
-    
-        queryString += " SET ";
-        queryString += objToSql(objColVals);
-        queryString += " WHERE ";
-        queryString += condition;
+      update: function(table, cols, cb) {
+        var queryString = "UPDATE " + table + " SET devoured = true WHERE burger_name = " + cols;
     
         console.log(queryString);
         connection.query(queryString, function(err, result) {
