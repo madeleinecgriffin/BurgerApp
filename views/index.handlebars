@@ -1,42 +1,31 @@
-<h1>Eat-Da-Burger! App</h1>
+<h1>Burgers Express!</h1>
 
-<p>Make and eat burgers with this app.</p>
+<h2>Burgers on the Menu</h2>
 
-<!-- Pass in data from server.js -->
 <ul>
-
-  {{#each burgers}} {{#unless devoured}}
-  <li>
-    <p>
-      <span class="label">Burger Name:</span> {{burger_name}}
-    </p>
-
-    <button data-id="{{id}}" class="delquote">Devour</button>
-
-  </li>
-  {{/unless}} {{/each}}
-
+  {{#each cats}}
+    {{#unless sleepy}}
+      {{> cats/cat-block sleep=true}}
+    {{/unless}}
+  {{/each}}
 </ul>
 
-<h2>Devoured</h2>
+<h2>Devoured Burgers</h2>
 
 <ul>
-  {{#each burgers}} {{#if devoured}}
-  <li>
-    <p>
-      <span class="label">Burger Name:</span> {{burger_name}}
-    </p>
-  </li>
-  {{/if}} {{/each}}
+  {{#each cats}}
+    {{#if sleepy}}
+      {{> cats/cat-block sleep=false}}
+    {{/if}}
+  {{/each}}
 </ul>
 
 <h2>Add a Burger</h2>
-
-<form class="create-form" action="/api/burgers" method="post">
+<form class="create-form">
 
   <div class="form-group">
-    <label for="auth">Burger:</label>
-    <input type="text" id="auth" name="name">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
   </div>
 
   <button type="submit">Add Burger</button>
