@@ -3,8 +3,8 @@
 <h2>Burgers on the Menu</h2>
 
 <ul>
-  {{#each cats}}
-    {{#unless sleepy}}
+  {{#each burgers}}
+    {{#unless devoured}}
       {{> cats/cat-block sleep=true}}
     {{/unless}}
   {{/each}}
@@ -13,8 +13,8 @@
 <h2>Devoured Burgers</h2>
 
 <ul>
-  {{#each cats}}
-    {{#if sleepy}}
+  {{#each burgers}}
+    {{#if devoured}}
       {{> cats/cat-block sleep=false}}
     {{/if}}
   {{/each}}
