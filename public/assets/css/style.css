@@ -1,7 +1,29 @@
+.menu {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.create-form {
+  margin-left: 300px;
+  margin-right: 200px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
 li {
   padding: 5px;
   margin: 5px;
-  background: #faebd7;
+  background: lightgreen;
+}
+
+ul {
+  list-style: none;
 }
 
 .label {
